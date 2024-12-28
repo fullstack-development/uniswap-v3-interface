@@ -89,7 +89,7 @@ export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: To
 // used for display in the default list when adding liquidity
 export const SUGGESTED_BASES: Partial<ChainTokenList> = {
   [ChainId.MAINNET]: [DAI, USDC[ChainId.MAINNET], USDT, WBTC],
-  [ChainId.POLYGON_AMOY]: [METALAMP, USDT_POLYGON_AMOY, USDC[ChainId.POLYGON_AMOY], WBTC_POLYGON_AMOY],
+  [ChainId.POLYGON_AMOY]: [METALAMP, USDT_POLYGON_AMOY],
 }
 // used to construct the list of all pairs we consider by default in the frontend
 export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
