@@ -101,6 +101,7 @@ export default function Pool() {
 
   const { positions, loading: positionsLoading } = useV3Positions(account)
 
+  const createPoolRoute = `/add/${chainId === ChainId.POLYGON_AMOY ? 'POL' : 'ETH'}`
   const menuItems = [
     {
       content: (
@@ -109,7 +110,7 @@ export default function Pool() {
           {t('Create a pool')}
         </MenuItem>
       ),
-      link: '/add/ETH',
+      link: createPoolRoute,
       external: false,
     },
     {
@@ -167,11 +168,7 @@ export default function Pool() {
                     </MoreOptionsButton>
                   )}
                 />
-                <ResponsiveButtonPrimary
-                  id="join-pool-button"
-                  as={Link}
-                  to={`/add/${chainId === ChainId.POLYGON_AMOY ? 'POL' : 'ETH'}`}
-                >
+                <ResponsiveButtonPrimary id="join-pool-button" as={Link} to={createPoolRoute}>
                   + {t('New Position')}
                 </ResponsiveButtonPrimary>
               </ButtonRow>
