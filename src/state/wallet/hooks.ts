@@ -12,6 +12,7 @@ import { useTotalUniEarned } from '../stake/hooks'
 import { Interface } from '@ethersproject/abi'
 import ERC20ABI from 'abis/erc20.json'
 import { Erc20Interface } from 'abis/types/Erc20'
+
 /**
  * Returns a map of the given addresses to their eventually consistent ETH balances.
  */
@@ -114,18 +115,21 @@ export function useCurrencyBalances(
     currencies,
   ])
   const tokenBalances = useTokenBalances(account, tokens)
-  const containsETH: boolean = useMemo(() => currencies?.some((currency) => currency?.isEther) ?? false, [currencies])
-  const ethBalance = useETHBalances(containsETH ? [account] : [])
+  const containsNativeCurrency = useMemo(
+    () => currencies?.some((currency) => currency?.isEther || currency?.isPol) ?? false,
+    [currencies]
+  )
+  const nativeCurrencyBalance = useETHBalances(containsNativeCurrency ? [account] : [])
 
   return useMemo(
     () =>
       currencies?.map((currency) => {
         if (!account || !currency) return undefined
         if (currency.isToken) return tokenBalances[currency.address]
-        if (currency.isEther) return ethBalance[account]
+        if (currency.isEther || currency.isPol) return nativeCurrencyBalance[account]
         return undefined
       }) ?? [],
-    [account, currencies, ethBalance, tokenBalances]
+    [account, currencies, nativeCurrencyBalance, tokenBalances]
   )
 }
 
