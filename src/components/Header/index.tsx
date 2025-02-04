@@ -7,19 +7,15 @@ import { darken } from 'polished'
 import { useTranslation } from 'react-i18next'
 import { Moon, Sun } from 'react-feather'
 import styled from 'styled-components/macro'
-
 import Logo from '../../assets/svg/logo.svg'
 import LogoDark from '../../assets/svg/logo_white.svg'
-
 import { useActiveWeb3React } from '../../hooks/web3'
 import { useDarkModeManager } from '../../state/user/hooks'
 import { useETHBalances } from '../../state/wallet/hooks'
 import { CardNoise } from '../earn/styled'
 import { TYPE, ExternalLink } from '../../theme'
-
 import { YellowCard } from '../Card'
 import Menu from '../Menu'
-
 import Row, { RowFixed } from '../Row'
 import Web3Status from '../Web3Status'
 import ClaimModal from '../claim/ClaimModal'
@@ -356,9 +352,6 @@ export default function Header() {
           }
         >
           {t('pool')}
-        </StyledNavLink>
-        <StyledNavLink id={`stake-nav-link`} to={'/vote'}>
-          Vote
         </StyledNavLink>
         <StyledExternalLink id={`stake-nav-link`} href={'https://info.uniswap.org'}>
           Charts <span style={{ fontSize: '11px', textDecoration: 'none !important' }}>↗</span>
