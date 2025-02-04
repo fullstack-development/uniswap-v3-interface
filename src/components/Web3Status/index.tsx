@@ -5,8 +5,7 @@ import React, { useMemo } from 'react'
 import { Activity } from 'react-feather'
 import { useTranslation } from 'react-i18next'
 import styled, { css } from 'styled-components'
-import WalletConnectIcon from '../../assets/images/walletConnectIcon.svg'
-import { injected, walletconnect } from '../../connectors'
+import { injected } from '../../connectors'
 import { NetworkContextName } from '../../constants/misc'
 import useENSName from '../../hooks/useENSName'
 import { useWalletModalToggle } from '../../state/application/hooks'
@@ -123,12 +122,6 @@ function newTransactionsFirst(a: TransactionDetails, b: TransactionDetails) {
 function StatusIcon({ connector }: { connector: AbstractConnector }) {
   if (connector === injected) {
     return <Identicon />
-  } else if (connector === walletconnect) {
-    return (
-      <IconWrapper size={16}>
-        <img src={WalletConnectIcon} alt={''} />
-      </IconWrapper>
-    )
   }
 
   return null

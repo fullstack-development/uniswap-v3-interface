@@ -7,8 +7,6 @@ import { darken } from 'polished'
 import { useTranslation } from 'react-i18next'
 import { Moon, Sun } from 'react-feather'
 import styled from 'styled-components/macro'
-import Logo from '../../assets/svg/logo.svg'
-import LogoDark from '../../assets/svg/logo_white.svg'
 import { useActiveWeb3React } from '../../hooks/web3'
 import { useDarkModeManager } from '../../state/user/hooks'
 import { useETHBalances } from '../../state/wallet/hooks'
@@ -169,10 +167,10 @@ const Title = styled.a`
   }
 `
 
-const UniIcon = styled.div`
-  transition: transform 0.3s ease;
+const Icon = styled.div`
+  transition: scale 0.3s ease;
   :hover {
-    transform: rotate(-5deg);
+    scale: 1.2;
   }
 `
 
@@ -254,9 +252,9 @@ export default function Header() {
     <HeaderFrame showBackground={scrollY > 45}>
       <HeaderRow>
         <Title href=".">
-          <UniIcon>
-            <img width={'24px'} src={darkMode ? LogoDark : Logo} alt="logo" />
-          </UniIcon>
+          <Icon>
+            <img width={'32px'} src={`${process.env.PUBLIC_URL}/${darkMode ? 'icon.svg' : 'icon.svg'}`} alt="icon" />
+          </Icon>
         </Title>
       </HeaderRow>
       <HeaderLinks>
