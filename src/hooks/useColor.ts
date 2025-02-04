@@ -1,32 +1,10 @@
 import { useState, useLayoutEffect } from 'react'
-import { shade } from 'polished'
 import Vibrant from 'node-vibrant'
-import { hex } from 'wcag-contrast'
-import { Token, ChainId } from '@alagunoff/uniswap-sdk-core'
+import { Token } from '@alagunoff/uniswap-sdk-core'
 import uriToHttp from 'utils/uriToHttp'
 
 async function getColorFromToken(token: Token): Promise<string | null> {
-  if (token.chainId !== ChainId.MAINNET) {
-    return Promise.resolve('#FAAB14')
-  }
-
-  const path = `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${token.address}/logo.png`
-
-  return Vibrant.from(path)
-    .getPalette()
-    .then((palette) => {
-      if (palette?.Vibrant) {
-        let detectedHex = palette.Vibrant.hex
-        let AAscore = hex(detectedHex, '#FFF')
-        while (AAscore < 3) {
-          detectedHex = shade(0.005, detectedHex)
-          AAscore = hex(detectedHex, '#FFF')
-        }
-        return detectedHex + '20'
-      }
-      return null
-    })
-    .catch(() => null)
+  return Promise.resolve('#FAAB14')
 }
 
 async function getColorFromUriPath(uri: string): Promise<string | null> {

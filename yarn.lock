@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@alagunoff/uniswap-sdk-core@3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@alagunoff/uniswap-sdk-core/-/uniswap-sdk-core-3.0.0.tgz#197a73f47970a8f461399b40283266b2e2b2e162"
-  integrity sha512-I1u75P/o+BPZE88RxsRCXY7w34waflEwbVXtHRcGl1ZVFChBLEKYH2g6n8Z0A1Deq77mSfSPZDZwwRnMNEIhnQ==
+"@alagunoff/uniswap-sdk-core@3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@alagunoff/uniswap-sdk-core/-/uniswap-sdk-core-3.1.0.tgz#0de0cbfd6c64e304a0465b6a7c4f672f277d6945"
+  integrity sha512-qPGjcftaT2CJiNfFwTiKxCq2qdhOq+Lq7/MFosVTgtkvJIyP3a6LTAd6jSNyWuaPfSQsDRWDHdM11x0mB9TAXw==
   dependencies:
     "@ethersproject/address" "5.0.2"
     big.js "5.2.2"
@@ -14,23 +14,23 @@
     tiny-invariant "1.1.0"
     toformat "2.0.0"
 
-"@alagunoff/uniswap-v2-sdk@3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@alagunoff/uniswap-v2-sdk/-/uniswap-v2-sdk-3.0.0.tgz#516d4438a7ca213a96d3429952eb642ed919946e"
-  integrity sha512-s85QZ5ZuHFUZlQPtEaUGiJcJw5co64CmOKJZnWgEi02OmMrrJSZfP2FIKSqYb91P/j1UzCzkoJTfVXypGL9XYA==
+"@alagunoff/uniswap-v2-sdk@3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@alagunoff/uniswap-v2-sdk/-/uniswap-v2-sdk-3.0.1.tgz#61e19f07691352eb28d3bb46b78920317d0a5b2b"
+  integrity sha512-wuWya/ZBK+48rwBXoZt7D3HxQyHHPvrlbEsZJyPZRZVGTneVHiZLMXWVP9uAjMZph6mNLa5uwrzzsxbB94cAFQ==
   dependencies:
-    "@alagunoff/uniswap-sdk-core" "3.0.0"
+    "@alagunoff/uniswap-sdk-core" "3.1.0"
     "@ethersproject/address" "5.0.0"
     "@ethersproject/solidity" "5.0.0"
     tiny-invariant "1.1.0"
     tiny-warning "1.0.3"
 
-"@alagunoff/uniswap-v3-sdk@3.0.1":
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/@alagunoff/uniswap-v3-sdk/-/uniswap-v3-sdk-3.0.1.tgz#650b905fcf8def4e7a459224e6ebc132130c2873"
-  integrity sha512-ZloqdbKBhQQk/9PrfmUTBPLCCvMYR7vnLpNmnFLuCXbU42iLzFc3rebe0GCfv525Hzhx76CBXWey2DPeI5PMUw==
+"@alagunoff/uniswap-v3-sdk@3.0.2":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@alagunoff/uniswap-v3-sdk/-/uniswap-v3-sdk-3.0.2.tgz#e3b612a5135e458fb483d0665a99d2b276832c93"
+  integrity sha512-FJi+awtByGfc98P/FnQqV4qXuzI65OhgplStW2NxomTRUHFFlutPZg2K7dX46LfrFkQ1a5yNSTbBZy7dh50ChQ==
   dependencies:
-    "@alagunoff/uniswap-sdk-core" "3.0.0"
+    "@alagunoff/uniswap-sdk-core" "3.1.0"
     "@ethersproject/abi" "5.0.12"
     "@ethersproject/solidity" "5.0.9"
     "@uniswap/v3-periphery" "1.0.0"

@@ -1,11 +1,6 @@
 import { ChainId } from '@alagunoff/uniswap-sdk-core'
 
 const CHAIN_ID_TO_PREFIX: { [chainId in ChainId]: string } = {
-  1: 'https://etherscan.io',
-  3: 'https://ropsten.etherscan.io',
-  4: 'https://rinkeby.etherscan.io',
-  5: 'https://goerli.etherscan.io',
-  42: 'https://kovan.etherscan.io',
   80002: 'https://amoy.polygonscan.com',
 }
 

@@ -1,7 +1,7 @@
 import { Currency, Token } from '@alagunoff/uniswap-sdk-core'
 import flatMap from 'lodash.flatmap'
 import { useMemo } from 'react'
-import { ADDITIONAL_BASES, BASES_TO_CHECK_TRADES_AGAINST, CUSTOM_BASES } from '../constants/routing'
+import { BASES_TO_CHECK_TRADES_AGAINST } from '../constants/routing'
 import { wrappedCurrency } from '../utils/wrappedCurrency'
 import { useActiveWeb3React } from './web3'
 
@@ -16,11 +16,9 @@ export function useAllCurrencyCombinations(currencyA?: Currency, currencyB?: Cur
     if (!chainId) return []
 
     const common = BASES_TO_CHECK_TRADES_AGAINST[chainId] ?? []
-    const additionalA = tokenA ? ADDITIONAL_BASES[chainId]?.[tokenA.address] ?? [] : []
-    const additionalB = tokenB ? ADDITIONAL_BASES[chainId]?.[tokenB.address] ?? [] : []
 
-    return [...common, ...additionalA, ...additionalB]
-  }, [chainId, tokenA, tokenB])
+    return [...common]
+  }, [chainId])
 
   const basePairs: [Token, Token][] = useMemo(
     () => flatMap(bases, (base): [Token, Token][] => bases.map((otherBase) => [base, otherBase])),
@@ -42,21 +40,7 @@ export function useAllCurrencyCombinations(currencyA?: Currency, currencyB?: Cur
           ]
             .filter((tokens): tokens is [Token, Token] => Boolean(tokens[0] && tokens[1]))
             .filter(([t0, t1]) => t0.address !== t1.address)
-            .filter(([tokenA, tokenB]) => {
-              if (!chainId) return true
-              const customBases = CUSTOM_BASES[chainId]
-
-              const customBasesA: Token[] | undefined = customBases?.[tokenA.address]
-              const customBasesB: Token[] | undefined = customBases?.[tokenB.address]
-
-              if (!customBasesA && !customBasesB) return true
-
-              if (customBasesA && !customBasesA.find((base) => tokenB.equals(base))) return false
-              if (customBasesB && !customBasesB.find((base) => tokenA.equals(base))) return false
-
-              return true
-            })
         : [],
-    [tokenA, tokenB, bases, basePairs, chainId]
+    [tokenA, tokenB, bases, basePairs]
   )
 }

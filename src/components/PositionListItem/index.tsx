@@ -15,7 +15,7 @@ import { unwrappedToken } from 'utils/wrappedCurrency'
 import RangeBadge from 'components/Badge/RangeBadge'
 import { RowFixed } from 'components/Row'
 import HoverInlineText from 'components/HoverInlineText'
-import { DAI, USDC, USDT, WBTC } from '../../constants/tokens'
+import { USDC, USDT, WBTC } from '../../constants/tokens'
 
 const Row = styled(Link)`
   align-items: center;
@@ -134,7 +134,7 @@ export function getPriceOrderingFromPositionForUI(
   const token1 = position.amount1.currency
 
   // if token0 is a dollar-stable asset, set it as the quote token
-  const stables = [DAI, USDC[ChainId.MAINNET], USDT]
+  const stables = [USDT[ChainId.POLYGON_AMOY], USDC[ChainId.POLYGON_AMOY]]
   if (stables.some((stable) => stable.equals(token0))) {
     return {
       priceLower: position.token0PriceUpper.invert(),
@@ -145,7 +145,7 @@ export function getPriceOrderingFromPositionForUI(
   }
 
   // if token1 is an ETH-/BTC-stable asset, set it as the base token
-  const bases = [...Object.values(WETH9), WBTC]
+  const bases = [...Object.values(WETH9), WBTC[ChainId.POLYGON_AMOY]]
   if (bases.some((base) => base.equals(token1))) {
     return {
       priceLower: position.token0PriceUpper.invert(),

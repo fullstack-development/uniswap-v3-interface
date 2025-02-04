@@ -7,7 +7,7 @@ import styled from 'styled-components/macro'
 import { unwrappedToken } from '../../utils/wrappedCurrency'
 import { ButtonEmpty } from '../Button'
 import { transparentize } from 'polished'
-import { CardNoise } from '../earn/styled'
+import { CardNoise } from './styled'
 
 import { useColor } from '../../hooks/useColor'
 

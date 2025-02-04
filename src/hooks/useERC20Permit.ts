@@ -5,11 +5,9 @@ import { Trade as V3Trade } from '@alagunoff/uniswap-v3-sdk'
 import { splitSignature } from 'ethers/lib/utils'
 import { useMemo, useState } from 'react'
 import { SWAP_ROUTER_ADDRESSES } from '../constants/addresses'
-import { DAI, UNI, USDC } from '../constants/tokens'
 import { useSingleCallResult } from '../state/multicall/hooks'
 import { useActiveWeb3React } from './web3'
 import { useEIP2612Contract } from './useContract'
-import useIsArgentWallet from './useIsArgentWallet'
 import useTransactionDeadline from './useTransactionDeadline'
 
 enum PermitType {
@@ -25,36 +23,6 @@ interface PermitInfo {
   name: string
   // version is optional, and if omitted, will not be included in the domain
   version?: string
-}
-
-// todo: read this information from extensions on token lists or elsewhere (permit registry?)
-const PERMITTABLE_TOKENS: {
-  [chainId in ChainId]: {
-    [checksummedTokenAddress: string]: PermitInfo
-  }
-} = {
-  [ChainId.MAINNET]: {
-    [USDC[ChainId.MAINNET].address]: { type: PermitType.AMOUNT, name: 'USD Coin', version: '2' },
-    [DAI.address]: { type: PermitType.ALLOWED, name: 'Dai Stablecoin', version: '1' },
-    [UNI[ChainId.MAINNET].address]: { type: PermitType.AMOUNT, name: 'Uniswap' },
-  },
-  [ChainId.RINKEBY]: {
-    ['0xc7AD46e0b8a400Bb3C915120d284AafbA8fc4735']: { type: PermitType.ALLOWED, name: 'Dai Stablecoin', version: '1' },
-    [UNI[ChainId.RINKEBY].address]: { type: PermitType.AMOUNT, name: 'Uniswap' },
-  },
-  [ChainId.ROPSTEN]: {
-    [UNI[ChainId.ROPSTEN].address]: { type: PermitType.AMOUNT, name: 'Uniswap' },
-    ['0x07865c6E87B9F70255377e024ace6630C1Eaa37F']: { type: PermitType.AMOUNT, name: 'USD Coin', version: '2' },
-  },
-  [ChainId.GÖRLI]: {
-    [UNI[ChainId.GÖRLI].address]: { type: PermitType.AMOUNT, name: 'Uniswap' },
-  },
-  [ChainId.KOVAN]: {
-    [UNI[ChainId.KOVAN].address]: { type: PermitType.AMOUNT, name: 'Uniswap' },
-  },
-  [ChainId.POLYGON_AMOY]: {
-    [UNI[ChainId.POLYGON_AMOY].address]: { type: PermitType.AMOUNT, name: 'Uniswap' },
-  },
 }
 
 export enum UseERC20PermitState {
@@ -130,17 +98,14 @@ export function useERC20Permit(
   const transactionDeadline = useTransactionDeadline()
   const tokenAddress = currencyAmount?.currency?.isToken ? currencyAmount.currency.address : undefined
   const eip2612Contract = useEIP2612Contract(tokenAddress)
-  const isArgentWallet = useIsArgentWallet()
   const nonceInputs = useMemo(() => [account ?? undefined], [account])
   const tokenNonceState = useSingleCallResult(eip2612Contract, 'nonces', nonceInputs)
-  const permitInfo =
-    overridePermitInfo ?? (chainId && tokenAddress ? PERMITTABLE_TOKENS[chainId][tokenAddress] : undefined)
+  const permitInfo = overridePermitInfo ?? undefined
 
   const [signatureData, setSignatureData] = useState<SignatureData | null>(null)
 
   return useMemo(() => {
     if (
-      isArgentWallet ||
       !currencyAmount ||
       !eip2612Contract ||
       !account ||
@@ -247,7 +212,6 @@ export function useERC20Permit(
     eip2612Contract,
     account,
     chainId,
-    isArgentWallet,
     transactionDeadline,
     library,
     tokenNonceState.loading,

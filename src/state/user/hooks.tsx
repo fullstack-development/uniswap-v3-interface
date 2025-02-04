@@ -4,8 +4,7 @@ import JSBI from 'jsbi'
 import flatMap from 'lodash.flatmap'
 import { useCallback, useMemo } from 'react'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
-import { BASES_TO_TRACK_LIQUIDITY_FOR, PINNED_PAIRS } from '../../constants/routing'
-
+import { BASES_TO_TRACK_LIQUIDITY_FOR } from '../../constants/routing'
 import { useActiveWeb3React } from '../../hooks/web3'
 import { useAllTokens } from '../../hooks/Tokens'
 import { AppDispatch, AppState } from '../index'
@@ -252,9 +251,6 @@ export function useTrackedTokenPairs(): [Token, Token][] {
   const { chainId } = useActiveWeb3React()
   const tokens = useAllTokens()
 
-  // pinned pairs
-  const pinnedPairs = useMemo(() => (chainId ? PINNED_PAIRS[chainId] ?? [] : []), [chainId])
-
   // pairs for every token against every base
   const generatedPairs: [Token, Token][] = useMemo(
     () =>
@@ -293,11 +289,7 @@ export function useTrackedTokenPairs(): [Token, Token][] {
     })
   }, [savedSerializedPairs, chainId])
 
-  const combinedList = useMemo(() => userPairs.concat(generatedPairs).concat(pinnedPairs), [
-    generatedPairs,
-    pinnedPairs,
-    userPairs,
-  ])
+  const combinedList = useMemo(() => userPairs.concat(generatedPairs), [generatedPairs, userPairs])
 
   return useMemo(() => {
     // dedupes pairs of tokens in the combined list
