@@ -1,10 +1,7 @@
 import React from 'react'
-
 import Badge, { BadgeVariant } from 'components/Badge'
 import styled from 'styled-components/macro'
-
 import { MouseoverTooltip } from '../../components/Tooltip'
-import { useTranslation } from 'react-i18next'
 import { AlertCircle } from 'react-feather'
 
 const BadgeWrapper = styled.div`
@@ -40,8 +37,6 @@ export default function RangeBadge({
   removed: boolean | undefined
   inRange: boolean | undefined
 }) {
-  const { t } = useTranslation()
-
   return (
     <BadgeWrapper>
       {removed ? (
@@ -49,7 +44,7 @@ export default function RangeBadge({
           <Badge variant={BadgeVariant.DEFAULT}>
             <AlertCircle width={14} height={14} />
             &nbsp;
-            <BadgeText>{t('Inactive')}</BadgeText>
+            <BadgeText>Inactive</BadgeText>
           </Badge>
         </MouseoverTooltip>
       ) : inRange ? (
@@ -58,7 +53,7 @@ export default function RangeBadge({
         >
           <Badge variant={BadgeVariant.DEFAULT}>
             <ActiveDot /> &nbsp;
-            <BadgeText>{t('In range')}</BadgeText>
+            <BadgeText>In range</BadgeText>
           </Badge>
         </MouseoverTooltip>
       ) : (
@@ -68,7 +63,7 @@ export default function RangeBadge({
           <Badge variant={BadgeVariant.WARNING}>
             <AlertCircle width={14} height={14} />
             &nbsp;
-            <BadgeText>{t('Out of range')}</BadgeText>
+            <BadgeText>Out of range</BadgeText>
           </Badge>
         </MouseoverTooltip>
       )}

@@ -1,4 +1,4 @@
-# Front end for Uniswap v3.3.6
+# Metaswap v3
 
 ## Prerequisites
 

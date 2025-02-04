@@ -1,8 +1,16 @@
 {
-  "name": "@uniswap/interface",
-  "description": "MetaLamp Swap Interface",
-  "homepage": "https://fullstack-development.github.io/uniswap-v3-interface",
   "private": true,
+  "scripts": {
+    "compile-contract-types": "yarn compile-external-abi-types && yarn compile-v3-contract-types",
+    "compile-external-abi-types": "typechain --target ethers-v5 --out-dir src/abis/types \"./src/abis/**/*.json\"",
+    "compile-v3-contract-types": "typechain --target ethers-v5 --out-dir src/types/v3 \"./node_modules/@uniswap/?(v3-core|v3-periphery)/artifacts/contracts/**/*.json\"",
+    "build": "yarn compile-contract-types && react-scripts build",
+    "postinstall": "yarn compile-contract-types",
+    "start": "yarn compile-contract-types && react-scripts start",
+    "typescript:check": "tsc --noEmit",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build"
+  },
   "devDependencies": {
     "@alagunoff/uniswap-v2-sdk": "3.0.1",
     "@alagunoff/uniswap-v3-sdk": "3.0.2",
@@ -56,9 +64,6 @@
     "eslint-plugin-react-hooks": "^4.0.0",
     "ethers": "^5.0.7",
     "gh-pages": "6.3.0",
-    "i18next": "^15.0.9",
-    "i18next-browser-languagedetector": "^3.0.1",
-    "i18next-xhr-backend": "^2.0.1",
     "inter-ui": "^3.13.1",
     "jazzicon": "^1.5.0",
     "lightweight-charts": "^3.3.0",
@@ -76,7 +81,6 @@
     "react-dom": "^17.0.1",
     "react-feather": "^2.0.8",
     "react-ga": "^2.5.7",
-    "react-i18next": "^10.7.0",
     "react-markdown": "^4.3.1",
     "react-popper": "^2.2.3",
     "react-redux": "^7.2.2",
@@ -101,17 +105,6 @@
     "workbox-precaching": "^6.1.0",
     "workbox-routing": "^6.1.0",
     "workbox-strategies": "^6.1.0"
-  },
-  "scripts": {
-    "compile-contract-types": "yarn compile-external-abi-types && yarn compile-v3-contract-types",
-    "compile-external-abi-types": "typechain --target ethers-v5 --out-dir src/abis/types \"./src/abis/**/*.json\"",
-    "compile-v3-contract-types": "typechain --target ethers-v5 --out-dir src/types/v3 \"./node_modules/@uniswap/?(v3-core|v3-periphery)/artifacts/contracts/**/*.json\"",
-    "build": "yarn compile-contract-types && react-scripts build",
-    "postinstall": "yarn compile-contract-types",
-    "start": "yarn compile-contract-types && react-scripts start",
-    "typescript:check": "tsc --noEmit",
-    "predeploy": "yarn build",
-    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app",

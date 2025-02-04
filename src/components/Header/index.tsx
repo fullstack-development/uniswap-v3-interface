@@ -4,7 +4,6 @@ import React from 'react'
 import { Text } from 'rebass'
 import { NavLink } from 'react-router-dom'
 import { darken } from 'polished'
-import { useTranslation } from 'react-i18next'
 import { Moon, Sun } from 'react-feather'
 import styled from 'styled-components/macro'
 import { useActiveWeb3React } from '../../hooks/web3'
@@ -240,12 +239,9 @@ const NETWORK_LABELS: { [chainId in ChainId]: string } = {
 export default function Header() {
   const { account, chainId } = useActiveWeb3React()
   const { account: web3Account } = useWeb3React()
-  const { t } = useTranslation()
-
   const userEthBalance = useETHBalances(account ? [account] : [])?.[account ?? '']
   // const [isDark] = useDarkModeManager()
   const [darkMode, toggleDarkMode] = useDarkModeManager()
-
   const scrollY = useScrollPosition()
 
   return (
@@ -259,7 +255,7 @@ export default function Header() {
       </HeaderRow>
       <HeaderLinks>
         <StyledNavLink id={`swap-nav-link`} to={'/swap'}>
-          {t('swap')}
+          Swap
         </StyledNavLink>
         <StyledNavLink
           id={`pool-nav-link`}
@@ -272,7 +268,7 @@ export default function Header() {
             pathname.startsWith('/find')
           }
         >
-          {t('pool')}
+          Pool
         </StyledNavLink>
       </HeaderLinks>
       <HeaderControls>

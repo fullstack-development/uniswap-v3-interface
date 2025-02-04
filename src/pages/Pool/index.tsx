@@ -7,7 +7,6 @@ import { RowBetween, RowFixed } from 'components/Row'
 import { useActiveWeb3React } from 'hooks/web3'
 import { useV3Positions } from 'hooks/useV3Positions'
 import { Inbox } from 'react-feather'
-import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { useWalletModalToggle } from 'state/application/hooks'
 import styled, { ThemeContext } from 'styled-components'
@@ -76,7 +75,6 @@ const MainContentWrapper = styled.main`
 export default function Pool() {
   const { account } = useActiveWeb3React()
   const toggleWalletModal = useWalletModalToggle()
-  const { t } = useTranslation()
   const theme = useContext(ThemeContext)
   const { positions, loading: positionsLoading } = useV3Positions(account)
 
@@ -88,11 +86,11 @@ export default function Pool() {
           <AutoColumn gap="lg" style={{ width: '100%' }}>
             <TitleRow style={{ marginTop: '1rem' }} padding={'0'}>
               <HideSmall>
-                <TYPE.mediumHeader>{t('Pools Overview')}</TYPE.mediumHeader>
+                <TYPE.mediumHeader>Pools Overview</TYPE.mediumHeader>
               </HideSmall>
               <ButtonRow>
                 <ResponsiveButtonPrimary id="join-pool-button" as={Link} to={'/add/POL'}>
-                  + {t('New Position')}
+                  + New Position
                 </ResponsiveButtonPrimary>
               </ButtonRow>
             </TitleRow>
@@ -118,11 +116,11 @@ export default function Pool() {
                 <NoLiquidity>
                   <TYPE.mediumHeader color={theme.text3} textAlign="center">
                     <Inbox size={48} strokeWidth={1} style={{ marginBottom: '.5rem' }} />
-                    <div>{t('Your liquidity positions will appear here.')}</div>
+                    <div>Your liquidity positions will appear here.</div>
                   </TYPE.mediumHeader>
                   {!account && (
                     <ButtonPrimary style={{ marginTop: '2em', padding: '8px 16px' }} onClick={toggleWalletModal}>
-                      {t('Connect a wallet')}
+                      Connect a wallet
                     </ButtonPrimary>
                   )}
                 </NoLiquidity>

@@ -32,7 +32,6 @@ import { TransactionResponse } from '@ethersproject/providers'
 import { useIsTransactionPending, useTransactionAdder } from 'state/transactions/hooks'
 import { useV3DerivedMintInfo, useRangeHopCallbacks, useV3MintActionHandlers } from 'state/mint/v3/hooks'
 import { Bound, resetMintState } from 'state/mint/v3/actions'
-import { useTranslation } from 'react-i18next'
 import { AlertCircle, AlertTriangle, ArrowDown } from 'react-feather'
 import FeeSelector from 'components/FeeSelector'
 import RangeSelector from 'components/RangeSelector'
@@ -120,7 +119,6 @@ function V2PairMigration({
   token0: Token
   token1: Token
 }) {
-  const { t } = useTranslation()
   const { chainId, account } = useActiveWeb3React()
   const theme = useTheme()
 
@@ -516,7 +514,7 @@ function V2PairMigration({
           ) : null}
 
           <RowBetween>
-            <TYPE.label>{t('selectLiquidityRange')}</TYPE.label>
+            <TYPE.label>Set Price Range</TYPE.label>
             <RateToggle
               currencyA={invertPrice ? currency1 : currency0}
               currencyB={invertPrice ? currency0 : currency1}
@@ -547,7 +545,7 @@ function V2PairMigration({
               <RowBetween>
                 <AlertTriangle stroke={theme.yellow3} size="16px" />
                 <TYPE.yellow ml="12px" fontSize="12px">
-                  {t('inactiveRangeWarning')}
+                  Your position will not earn fees or be used in trades until the market price moves into your range.
                 </TYPE.yellow>
               </RowBetween>
             </YellowCard>
@@ -558,7 +556,7 @@ function V2PairMigration({
               <RowBetween>
                 <AlertTriangle stroke={theme.yellow3} size="16px" />
                 <TYPE.yellow ml="12px" fontSize="12px">
-                  {t('invalidRangeWarning')}
+                  Invalid range selected. The min price must be lower than the max price.
                 </TYPE.yellow>
               </RowBetween>
             </YellowCard>

@@ -1,6 +1,5 @@
 import React from 'react'
 import { FeeAmount } from '@alagunoff/uniswap-v3-sdk'
-import { useTranslation } from 'react-i18next'
 import { AutoColumn } from 'components/Column'
 import { DynamicSection } from 'pages/AddLiquidity/styled'
 import { TYPE } from 'theme'
@@ -23,12 +22,10 @@ export default function FeeSelector({
   feeAmount?: FeeAmount
   handleFeePoolSelect: (feeAmount: FeeAmount) => void
 }) {
-  const { t } = useTranslation()
-
   return (
     <AutoColumn gap="16px">
       <DynamicSection gap="md" disabled={disabled}>
-        <TYPE.label>{t('selectPool')}</TYPE.label>
+        <TYPE.label>Select Fee Tier</TYPE.label>
         <TYPE.main fontSize={14} fontWeight={400} style={{ marginBottom: '.5rem', lineHeight: '125%' }}>
           Select a pool type based on your preferred liquidity provider fee.
         </TYPE.main>
@@ -39,7 +36,7 @@ export default function FeeSelector({
             onClick={() => handleFeePoolSelect(FeeAmount.LOW)}
           >
             <AutoColumn gap="sm" justify="flex-start">
-              <ResponsiveText>0.05% {t('fee')}</ResponsiveText>
+              <ResponsiveText>0.05% fee</ResponsiveText>
               <TYPE.main fontWeight={400} fontSize="12px" textAlign="left">
                 Best for stable pairs.
               </TYPE.main>
@@ -51,7 +48,7 @@ export default function FeeSelector({
             onClick={() => handleFeePoolSelect(FeeAmount.MEDIUM)}
           >
             <AutoColumn gap="sm" justify="flex-start">
-              <ResponsiveText>0.3% {t('fee')}</ResponsiveText>
+              <ResponsiveText>0.3% fee</ResponsiveText>
               <TYPE.main fontWeight={400} fontSize="12px" textAlign="left">
                 Best for most pairs.
               </TYPE.main>
@@ -63,7 +60,7 @@ export default function FeeSelector({
             onClick={() => handleFeePoolSelect(FeeAmount.HIGH)}
           >
             <AutoColumn gap="sm" justify="flex-start">
-              <ResponsiveText>1% {t('fee')}</ResponsiveText>
+              <ResponsiveText>1% fee</ResponsiveText>
               <TYPE.main fontWeight={400} fontSize="12px" textAlign="left">
                 Best for exotic pairs.
               </TYPE.main>

@@ -36,7 +36,6 @@ import { Dots } from '../Pool/styleds'
 import { currencyId } from '../../utils/currencyId'
 import UnsupportedCurrencyFooter from 'components/swap/UnsupportedCurrencyFooter'
 import { DynamicSection, CurrencyDropdown, StyledInput, Wrapper, ScrollablePage } from './styled'
-import { useTranslation } from 'react-i18next'
 import {
   useV3MintState,
   useV3MintActionHandlers,
@@ -62,8 +61,6 @@ export default function AddLiquidity({
   },
   history,
 }: RouteComponentProps<{ currencyIdA?: string; currencyIdB?: string; feeAmount?: string; tokenId?: string }>) {
-  const { t } = useTranslation()
-
   const { account, chainId, library } = useActiveWeb3React()
   const theme = useContext(ThemeContext)
   const toggleWalletModal = useWalletModalToggle() // toggle wallet when disconnected
@@ -461,7 +458,7 @@ export default function AddLiquidity({
                   <DynamicSection disabled={!currencyA || !currencyB}>
                     <AutoColumn gap="md">
                       <RowBetween>
-                        <TYPE.label>{t('selectStartingPrice')}</TYPE.label>
+                        <TYPE.label>Set Starting Price</TYPE.label>
                         {baseCurrency && quoteCurrency ? (
                           <RateToggle
                             currencyA={baseCurrency}
@@ -531,7 +528,7 @@ export default function AddLiquidity({
 
                 <DynamicSection gap="md" disabled={!feeAmount || invalidPool || (noLiquidity && !startPriceTypedValue)}>
                   <RowBetween>
-                    <TYPE.label>{t('selectLiquidityRange')}</TYPE.label>
+                    <TYPE.label>Set Price Range</TYPE.label>
 
                     {baseCurrency && quoteCurrency ? (
                       <RateToggle
@@ -596,7 +593,8 @@ export default function AddLiquidity({
                       <RowBetween>
                         <AlertTriangle stroke={theme.yellow3} size="16px" />
                         <TYPE.yellow ml="12px" fontSize="12px">
-                          {t('inactiveRangeWarning')}
+                          Your position will not earn fees or be used in trades until the market price moves into your
+                          range.
                         </TYPE.yellow>
                       </RowBetween>
                     </YellowCard>
@@ -607,7 +605,7 @@ export default function AddLiquidity({
                       <RowBetween>
                         <AlertTriangle stroke={theme.yellow3} size="16px" />
                         <TYPE.yellow ml="12px" fontSize="12px">
-                          {t('invalidRangeWarning')}
+                          Invalid range selected. The min price must be lower than the max price.
                         </TYPE.yellow>
                       </RowBetween>
                     </YellowCard>
@@ -620,7 +618,7 @@ export default function AddLiquidity({
               disabled={tickLower === undefined || tickUpper === undefined || invalidPool || invalidRange}
             >
               <AutoColumn gap="md">
-                <TYPE.label>{hasExistingPosition ? 'Add more liquidity' : t('depositAmounts')}</TYPE.label>
+                <TYPE.label>{hasExistingPosition ? 'Add more liquidity' : 'Deposit Amounts'}</TYPE.label>
 
                 <CurrencyInputPanel
                   value={formattedAmounts[Field.CURRENCY_A]}
@@ -654,11 +652,11 @@ export default function AddLiquidity({
             <div>
               {addIsUnsupported ? (
                 <ButtonPrimary disabled={true} borderRadius="12px" padding={'12px'}>
-                  <TYPE.main mb="4px">{t('unsupportedAsset')}</TYPE.main>
+                  <TYPE.main mb="4px">Unsupported Asset</TYPE.main>
                 </ButtonPrimary>
               ) : !account ? (
                 <ButtonLight onClick={toggleWalletModal} borderRadius="12px" padding={'12px'}>
-                  {t('connectWallet')}
+                  Connect Wallet
                 </ButtonLight>
               ) : (
                 <AutoColumn gap={'md'}>

@@ -1,10 +1,8 @@
 import React from 'react'
 import styled from 'styled-components/macro'
 import { darken } from 'polished'
-import { useTranslation } from 'react-i18next'
 import { NavLink, Link as HistoryLink } from 'react-router-dom'
 import { Percent } from '@alagunoff/uniswap-sdk-core'
-
 import { ArrowLeft } from 'react-feather'
 import { RowBetween } from '../Row'
 import SettingsTab from '../Settings'
@@ -60,14 +58,13 @@ const StyledArrowLeft = styled(ArrowLeft)`
 `
 
 export function SwapPoolTabs({ active }: { active: 'swap' | 'pool' }) {
-  const { t } = useTranslation()
   return (
     <Tabs style={{ marginBottom: '20px', display: 'none', padding: '1rem 1rem 0 1rem' }}>
       <StyledNavLink id={`swap-nav-link`} to={'/swap'} isActive={() => active === 'swap'}>
-        {t('swap')}
+        Swap
       </StyledNavLink>
       <StyledNavLink id={`pool-nav-link`} to={'/pool'} isActive={() => active === 'pool'}>
-        {t('pool')}
+        Pool
       </StyledNavLink>
     </Tabs>
   )
@@ -98,7 +95,6 @@ export function AddRemoveTabs({
   defaultSlippage: Percent
 }) {
   const theme = useTheme()
-
   // reset states on back
   const dispatch = useDispatch<AppDispatch>()
 

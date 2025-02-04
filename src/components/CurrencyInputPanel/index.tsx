@@ -13,7 +13,6 @@ import { TYPE } from '../../theme'
 import { Input as NumericalInput } from '../NumericalInput'
 import { ReactComponent as DropDown } from '../../assets/images/dropdown.svg'
 import { useActiveWeb3React } from '../../hooks/web3'
-import { useTranslation } from 'react-i18next'
 import useTheme from '../../hooks/useTheme'
 import { Lock } from 'react-feather'
 import { AutoColumn } from 'components/Column'
@@ -183,8 +182,6 @@ export default function CurrencyInputPanel({
   locked = false,
   ...rest
 }: CurrencyInputPanelProps) {
-  const { t } = useTranslation()
-
   const [modalOpen, setModalOpen] = useState(false)
   const { account } = useActiveWeb3React()
   const selectedCurrencyBalance = useCurrencyBalance(account ?? undefined, currency ?? undefined)
@@ -237,7 +234,7 @@ export default function CurrencyInputPanel({
                       ? currency.symbol.slice(0, 4) +
                         '...' +
                         currency.symbol.slice(currency.symbol.length - 5, currency.symbol.length)
-                      : currency?.symbol) || t('selectToken')}
+                      : currency?.symbol) || 'Select a token'}
                   </StyledTokenName>
                 )}
               </RowFixed>

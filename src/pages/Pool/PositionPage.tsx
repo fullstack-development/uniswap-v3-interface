@@ -19,7 +19,6 @@ import Badge from 'components/Badge'
 import { ButtonConfirmed, ButtonPrimary, ButtonGray } from 'components/Button'
 import { DarkCard, LightCard } from 'components/Card'
 import CurrencyLogo from 'components/CurrencyLogo'
-import { useTranslation } from 'react-i18next'
 import { currencyId } from 'utils/currencyId'
 import { formatTokenAmount } from 'utils/formatTokenAmount'
 import { useV3PositionFees } from 'hooks/useV3PositionFees'
@@ -166,7 +165,6 @@ function CurrentPriceCard({
   currencyQuote?: Currency
   currencyBase?: Currency
 }) {
-  const { t } = useTranslation()
   if (!pool || !currencyQuote || !currencyBase) {
     return null
   }
@@ -174,7 +172,7 @@ function CurrentPriceCard({
   return (
     <LightCard padding="12px ">
       <AutoColumn gap="8px" justify="center">
-        <ExtentsText>{t('Current price')}</ExtentsText>
+        <ExtentsText>Current price</ExtentsText>
         <TYPE.mediumHeader textAlign="center">
           {(inverted ? pool.token1Price : pool.token0Price).toSignificant(5)}{' '}
         </TYPE.mediumHeader>
@@ -298,7 +296,6 @@ export function PositionPage({
     params: { tokenId: tokenIdFromUrl },
   },
 }: RouteComponentProps<{ tokenId?: string }>) {
-  const { t } = useTranslation()
   const { chainId, account, library } = useActiveWeb3React()
   const theme = useTheme()
 
@@ -532,7 +529,7 @@ export function PositionPage({
                     borderRadius="12px"
                     style={{ marginRight: '8px' }}
                   >
-                    {t('Increase Liquidity')}
+                    Increase Liquidity
                   </ButtonGray>
                 ) : null}
                 {tokenId && !removed ? (
@@ -543,7 +540,7 @@ export function PositionPage({
                     padding="6px 8px"
                     borderRadius="12px"
                   >
-                    {t('Remove Liquidity')}
+                    Remove Liquidity
                   </ResponsiveButtonPrimary>
                 ) : null}
               </RowFixed>

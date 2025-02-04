@@ -8,7 +8,7 @@
       "jsx": true
     }
   },
-  "ignorePatterns": ["node_modules/**/*", "uniswap-packages-forks/**/*"],
+  "ignorePatterns": ["node_modules/**/*"],
   "settings": {
     "react": {
       "version": "detect"

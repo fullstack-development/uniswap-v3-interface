@@ -7,7 +7,6 @@ import { RowBetween, RowFixed } from 'components/Row'
 import CurrencyLogo from 'components/CurrencyLogo'
 import { unwrappedToken } from 'utils/wrappedCurrency'
 import { Break } from './styled'
-import { useTranslation } from 'react-i18next'
 import { Currency } from '@alagunoff/uniswap-sdk-core'
 import RateToggle from 'components/RateToggle'
 import DoubleCurrencyLogo from 'components/DoubleLogo'
@@ -26,8 +25,6 @@ export const PositionPreview = ({
   inRange: boolean
   baseCurrencyDefault?: Currency | undefined
 }) => {
-  const { t } = useTranslation()
-
   const theme = useContext(ThemeContext)
 
   const currency0 = unwrappedToken(position.pool.token0)
@@ -97,7 +94,7 @@ export const PositionPreview = ({
           </RowBetween>
           <Break />
           <RowBetween>
-            <TYPE.label>{t('feeTier')}</TYPE.label>
+            <TYPE.label>Fee Tier</TYPE.label>
             <TYPE.label>{position?.pool?.fee / 10000}%</TYPE.label>
           </RowBetween>
         </AutoColumn>
