@@ -339,7 +339,6 @@ export default function Swap({ history }: RouteComponentProps) {
             swapErrorMessage={swapErrorMessage}
             onDismiss={handleConfirmDismiss}
           />
-
           <AutoColumn gap={'md'}>
             <div style={{ display: 'relative' }}>
               <CurrencyInputPanel
@@ -380,7 +379,6 @@ export default function Swap({ history }: RouteComponentProps) {
                 id="swap-currency-output"
               />
             </div>
-
             {recipient !== null && !showWrap ? (
               <>
                 <AutoRow justify="space-between" style={{ padding: '0 1rem' }}>
@@ -394,7 +392,6 @@ export default function Swap({ history }: RouteComponentProps) {
                 <AddressInputPanel id="recipient" value={recipient} onChange={onChangeRecipient} />
               </>
             ) : null}
-
             <Row style={{ justifyContent: !trade ? 'center' : 'space-between' }}>
               <RowFixed>
                 {[V3TradeState.VALID, V3TradeState.SYNCING, V3TradeState.NO_ROUTE_FOUND].includes(v3TradeState) &&
@@ -426,7 +423,6 @@ export default function Swap({ history }: RouteComponentProps) {
                       </ButtonGray>
                     )
                   ))}
-
                 {toggledVersion === Version.v3 && trade && isTradeBetter(v2Trade, v3Trade) && (
                   <ButtonGray
                     width="fit-content"
@@ -459,7 +455,6 @@ export default function Swap({ history }: RouteComponentProps) {
                 </RowFixed>
               ) : null}
             </Row>
-
             <BottomGrouping>
               {swapIsUnsupported ? (
                 <ButtonPrimary disabled={true}>
