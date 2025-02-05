@@ -3,7 +3,6 @@ import { TransactionResponse } from '@ethersproject/providers'
 import { Currency, CurrencyAmount, currencyEquals, Percent } from '@alagunoff/uniswap-sdk-core'
 import { WETH9 } from '@alagunoff/uniswap-sdk-core'
 import { AlertTriangle, AlertCircle } from 'react-feather'
-import ReactGA from 'react-ga'
 import { ZERO_PERCENT } from '../../constants/misc'
 import { NONFUNGIBLE_POSITION_MANAGER_ADDRESSES } from '../../constants/addresses'
 import { useV3NFTPositionManagerContract } from '../../hooks/useContract'
@@ -26,7 +25,6 @@ import { ApprovalState, useApproveCallback } from '../../hooks/useApproveCallbac
 import useTransactionDeadline from '../../hooks/useTransactionDeadline'
 import { useWalletModalToggle } from '../../state/application/hooks'
 import { Field, Bound } from '../../state/mint/v3/actions'
-
 import { useTransactionAdder } from '../../state/transactions/hooks'
 import { useIsExpertMode, useUserSlippageToleranceWithDefault } from '../../state/user/hooks'
 import { TYPE, ExternalLink } from '../../theme'
@@ -242,11 +240,6 @@ export default function AddLiquidity({
                   : `Add ${currencyA?.symbol}/${currencyB?.symbol} V3 liquidity`,
               })
               setTxHash(response.hash)
-              ReactGA.event({
-                category: 'Liquidity',
-                action: 'Add',
-                label: [currencies[Field.CURRENCY_A]?.symbol, currencies[Field.CURRENCY_B]?.symbol].join('/'),
-              })
             })
         })
         .catch((error) => {

@@ -1,6 +1,5 @@
 import { ActionCreatorWithPayload, createAction } from '@reduxjs/toolkit'
 import { TokenList, Version } from '@uniswap/token-lists'
-import { ChainId } from '@alagunoff/uniswap-sdk-core'
 
 export const fetchTokenList: Readonly<{
   pending: ActionCreatorWithPayload<{ url: string; requestId: string }>

@@ -37,7 +37,6 @@ import {
 import { useActiveWeb3React } from 'hooks/web3'
 import { useV3NFTPositionManagerContract } from 'hooks/useContract'
 import { useIsTransactionPending, useTransactionAdder } from 'state/transactions/hooks'
-import ReactGA from 'react-ga'
 import TransactionConfirmationModal, { ConfirmationModalContent } from 'components/TransactionConfirmationModal'
 import { TransactionResponse } from '@ethersproject/providers'
 import { Dots } from 'components/swap/styleds'
@@ -395,13 +394,6 @@ export function PositionPage({
           .then((response: TransactionResponse) => {
             setCollectMigrationHash(response.hash)
             setCollecting(false)
-
-            ReactGA.event({
-              category: 'Liquidity',
-              action: 'CollectV3',
-              label: [feeValue0.currency.symbol, feeValue1.currency.symbol].join('/'),
-            })
-
             addTransaction(response, {
               summary: `Collect ${feeValue0.currency.symbol}/${feeValue1.currency.symbol} fees`,
             })

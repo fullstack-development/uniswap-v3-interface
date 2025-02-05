@@ -3,7 +3,7 @@ import Vibrant from 'node-vibrant'
 import { Token } from '@alagunoff/uniswap-sdk-core'
 import uriToHttp from 'utils/uriToHttp'
 
-async function getColorFromToken(token: Token): Promise<string | null> {
+async function getColorFromToken(): Promise<string | null> {
   return Promise.resolve('#FAAB14')
 }
 
@@ -28,7 +28,7 @@ export function useColor(token?: Token) {
     let stale = false
 
     if (token) {
-      getColorFromToken(token).then((tokenColor) => {
+      getColorFromToken().then((tokenColor) => {
         if (!stale && tokenColor !== null) {
           setColor(tokenColor)
         }

@@ -18,7 +18,6 @@ import FormattedCurrencyAmount from 'components/FormattedCurrencyAmount'
 import { useV3NFTPositionManagerContract } from 'hooks/useContract'
 import { useUserSlippageToleranceWithDefault } from 'state/user/hooks'
 import useTransactionDeadline from 'hooks/useTransactionDeadline'
-import ReactGA from 'react-ga'
 import { useActiveWeb3React } from 'hooks/web3'
 import { TransactionResponse } from '@ethersproject/providers'
 import { useTransactionAdder } from 'state/transactions/hooks'
@@ -143,11 +142,6 @@ function Remove({ tokenId }: { tokenId: BigNumber }) {
           .getSigner()
           .sendTransaction(newTxn)
           .then((response: TransactionResponse) => {
-            ReactGA.event({
-              category: 'Liquidity',
-              action: 'RemoveV3',
-              label: [liquidityValue0.currency.symbol, liquidityValue1.currency.symbol].join('/'),
-            })
             setTxnHash(response.hash)
             setAttemptingTxn(false)
             addTransaction(response, {

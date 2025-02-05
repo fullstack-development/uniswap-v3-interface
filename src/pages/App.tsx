@@ -1,7 +1,6 @@
 import React, { Suspense } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import styled from 'styled-components/macro'
-import GoogleAnalyticsReporter from '../components/analytics/GoogleAnalyticsReporter'
 import Header from '../components/Header'
 import Polling from '../components/Header/Polling'
 import Popups from '../components/Popups'
@@ -57,7 +56,6 @@ export default function App() {
   return (
     <ErrorBoundary>
       <Suspense fallback={null}>
-        <Route component={GoogleAnalyticsReporter} />
         <Route component={DarkModeQueryParamReader} />
         <Route component={ApeModeQueryParamReader} />
         <AppWrapper>

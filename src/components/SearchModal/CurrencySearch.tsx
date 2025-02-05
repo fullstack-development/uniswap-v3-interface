@@ -1,6 +1,5 @@
 import { ChainId, Currency, ETHER, POL, Token } from '@alagunoff/uniswap-sdk-core'
 import React, { KeyboardEvent, RefObject, useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import ReactGA from 'react-ga'
 import { FixedSizeList } from 'react-window'
 import { Text } from 'rebass'
 import { useActiveWeb3React } from '../../hooks/web3'
@@ -69,16 +68,6 @@ export function CurrencySearch({
   const searchToken = useToken(debouncedQuery)
 
   const searchTokenIsAdded = useIsUserAddedToken(searchToken)
-
-  useEffect(() => {
-    if (isAddressSearch) {
-      ReactGA.event({
-        category: 'Currency Select',
-        action: 'Search by address',
-        label: isAddressSearch,
-      })
-    }
-  }, [isAddressSearch])
 
   const tokenComparator = useTokenComparator(invertSearchOrder)
 

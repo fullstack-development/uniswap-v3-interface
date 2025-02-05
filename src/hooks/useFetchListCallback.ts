@@ -5,18 +5,13 @@ import { useDispatch } from 'react-redux'
 import { AppDispatch } from '../state'
 import { fetchTokenList } from '../state/lists/actions'
 import getTokenList from '../utils/getTokenList'
-import { useActiveWeb3React } from './web3'
 
 export function useFetchListCallback(): (listUrl: string, sendDispatch?: boolean) => Promise<TokenList> {
-  const { chainId, library } = useActiveWeb3React()
   const dispatch = useDispatch<AppDispatch>()
 
-  const ensResolver = useCallback(
-    async (ensName: string) => {
-      throw new Error('Could not construct mainnet ENS resolver')
-    },
-    [chainId, library]
-  )
+  const ensResolver = useCallback(async () => {
+    throw new Error('Could not construct mainnet ENS resolver')
+  }, [])
 
   // note: prevent dispatch if using for list search or unsupported list
   return useCallback(

@@ -7,7 +7,6 @@ import { MouseoverTooltip, MouseoverTooltipContent } from 'components/Tooltip'
 import JSBI from 'jsbi'
 import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import { ArrowDown, CheckCircle, HelpCircle, Info, ArrowLeft } from 'react-feather'
-import ReactGA from 'react-ga'
 import { Link, RouteComponentProps } from 'react-router-dom'
 import { Text } from 'rebass'
 import styled, { ThemeContext } from 'styled-components'
@@ -248,22 +247,6 @@ export default function Swap({ history }: RouteComponentProps) {
     swapCallback()
       .then((hash) => {
         setSwapState({ attemptingTxn: false, tradeToConfirm, showConfirm, swapErrorMessage: undefined, txHash: hash })
-
-        ReactGA.event({
-          category: 'Swap',
-          action:
-            recipient === null
-              ? 'Swap w/o Send'
-              : (recipientAddress ?? recipient) === account
-              ? 'Swap w/o Send + recipient'
-              : 'Swap w/ Send',
-          label: [
-            trade?.inputAmount?.currency?.symbol,
-            trade?.outputAmount?.currency?.symbol,
-            getTradeVersion(trade),
-            singleHopOnly ? 'SH' : 'MH',
-          ].join('/'),
-        })
       })
       .catch((error) => {
         setSwapState({
@@ -274,17 +257,7 @@ export default function Swap({ history }: RouteComponentProps) {
           txHash: undefined,
         })
       })
-  }, [
-    priceImpact,
-    swapCallback,
-    tradeToConfirm,
-    showConfirm,
-    recipient,
-    recipientAddress,
-    account,
-    trade,
-    singleHopOnly,
-  ])
+  }, [priceImpact, swapCallback, tradeToConfirm, showConfirm])
 
   // errors
   const [showInverted, setShowInverted] = useState<boolean>(false)

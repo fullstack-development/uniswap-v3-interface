@@ -27,7 +27,6 @@ import { Dots } from 'components/swap/styleds'
 import { ButtonConfirmed } from 'components/Button'
 import useTransactionDeadline from 'hooks/useTransactionDeadline'
 import { useUserSlippageToleranceWithDefault } from 'state/user/hooks'
-import ReactGA from 'react-ga'
 import { TransactionResponse } from '@ethersproject/providers'
 import { useIsTransactionPending, useTransactionAdder } from 'state/transactions/hooks'
 import { useV3DerivedMintInfo, useRangeHopCallbacks, useV3MintActionHandlers } from 'state/mint/v3/hooks'
@@ -352,12 +351,6 @@ function V2PairMigration({
         return migrator
           .multicall(data, { gasLimit: calculateGasMargin(gasEstimate) })
           .then((response: TransactionResponse) => {
-            ReactGA.event({
-              category: 'Migrate',
-              action: `${isNotUniswap ? 'SushiSwap' : 'V2'}->V3`,
-              label: `${currency0.symbol}/${currency1.symbol}`,
-            })
-
             addTransaction(response, {
               summary: `Migrate ${currency0.symbol}/${currency1.symbol} liquidity to V3`,
             })
@@ -368,7 +361,6 @@ function V2PairMigration({
         setConfirmingMigration(false)
       })
   }, [
-    isNotUniswap,
     migrator,
     noLiquidity,
     blockTimestamp,

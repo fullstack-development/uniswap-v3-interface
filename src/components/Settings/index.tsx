@@ -1,6 +1,5 @@
 import React, { useContext, useRef, useState } from 'react'
 import { Settings, X } from 'react-feather'
-import ReactGA from 'react-ga'
 import { Text } from 'rebass'
 import styled, { ThemeContext } from 'styled-components'
 import { useOnClickOutside } from '../../hooks/useOnClickOutside'
@@ -223,10 +222,6 @@ export default function SettingsTab({ placeholderSlippage }: { placeholderSlippa
                 id="toggle-disable-multihop-button"
                 isActive={singleHopOnly}
                 toggle={() => {
-                  ReactGA.event({
-                    category: 'Routing',
-                    action: singleHopOnly ? 'disable single hop' : 'enable single hop',
-                  })
                   setSingleHopOnly(!singleHopOnly)
                 }}
               />

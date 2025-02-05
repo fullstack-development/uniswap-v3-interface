@@ -3,7 +3,6 @@ import store, { AppState } from '../../state'
 import { ExternalLink, ThemedBackground, TYPE } from '../../theme'
 import { AutoColumn } from '../Column'
 import styled from 'styled-components/macro'
-import ReactGA from 'react-ga'
 import { getUserAgent } from '../../utils/getUserAgent'
 import { AutoRow } from '../Row'
 
@@ -53,14 +52,6 @@ export default class ErrorBoundary extends React.Component<unknown, ErrorBoundar
 
   static getDerivedStateFromError(error: Error): ErrorBoundaryState {
     return { error }
-  }
-
-  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    ReactGA.exception({
-      ...error,
-      ...errorInfo,
-      fatal: true,
-    })
   }
 
   render() {
