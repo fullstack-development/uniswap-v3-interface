@@ -248,7 +248,11 @@ export default function Header() {
       <HeaderRow>
         <Title href=".">
           <Icon>
-            <img width={32} src={`${process.env.PUBLIC_URL}/icon-${modeIsDark ? 'dark' : 'light'}.svg`} alt="icon" />
+            <img
+              width={32}
+              src={`${process.env.PUBLIC_URL}/icons/metaswap-${modeIsDark ? 'dark' : 'light'}.svg`}
+              alt="icon"
+            />
           </Icon>
         </Title>
       </HeaderRow>
