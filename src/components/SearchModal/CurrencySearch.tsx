@@ -5,10 +5,10 @@ import { FixedSizeList } from 'react-window'
 import { Text } from 'rebass'
 import { useActiveWeb3React } from '../../hooks/web3'
 import { useAllTokens, useToken, useIsUserAddedToken, useSearchInactiveTokenLists } from '../../hooks/Tokens'
-import { CloseIcon, TYPE, ButtonText, IconWrapper } from '../../theme'
+import { CloseIcon, TYPE } from '../../theme'
 import { isAddress } from '../../utils'
 import Column from '../Column'
-import Row, { RowBetween, RowFixed } from '../Row'
+import Row, { RowBetween } from '../Row'
 import CommonBases from './CommonBases'
 import CurrencyList from './CurrencyList'
 import { filterTokens, useSortedTokensByQuery } from './filtering'
@@ -20,23 +20,13 @@ import useToggle from 'hooks/useToggle'
 import { useOnClickOutside } from 'hooks/useOnClickOutside'
 import useTheme from 'hooks/useTheme'
 import ImportRow from './ImportRow'
-import { Edit } from 'react-feather'
+
 import useDebounce from 'hooks/useDebounce'
 
 const ContentWrapper = styled(Column)`
   width: 100%;
   flex: 1 1;
   position: relative;
-`
-
-const Footer = styled.div`
-  width: 100%;
-  border-radius: 20px;
-  padding: 20px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  background-color: ${({ theme }) => theme.bg1};
-  border-top: 1px solid ${({ theme }) => theme.bg2};
 `
 
 interface CurrencySearchProps {
@@ -46,7 +36,6 @@ interface CurrencySearchProps {
   onCurrencySelect: (currency: Currency) => void
   otherSelectedCurrency?: Currency | null
   showCommonBases?: boolean
-  showManageView: () => void
   showImportView: () => void
   setImportToken: (token: Token) => void
 }
@@ -58,7 +47,6 @@ export function CurrencySearch({
   showCommonBases,
   onDismiss,
   isOpen,
-  showManageView,
   showImportView,
   setImportToken,
 }: CurrencySearchProps) {
@@ -225,18 +213,6 @@ export function CurrencySearch({
           </TYPE.main>
         </Column>
       )}
-      <Footer>
-        <Row justify="center">
-          <ButtonText onClick={showManageView} color={theme.blue1} className="list-token-manage-button">
-            <RowFixed>
-              <IconWrapper size="16px" marginRight="6px">
-                <Edit />
-              </IconWrapper>
-              <TYPE.main color={theme.blue1}>Manage Token Lists</TYPE.main>
-            </RowFixed>
-          </ButtonText>
-        </Row>
-      </Footer>
     </ContentWrapper>
   )
 }

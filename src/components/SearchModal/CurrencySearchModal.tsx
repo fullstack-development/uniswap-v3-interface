@@ -75,7 +75,6 @@ export default function CurrencySearchModal({
           otherSelectedCurrency={otherSelectedCurrency}
           showImportView={() => setModalView(CurrencyModalView.importToken)}
           setImportToken={setImportToken}
-          showManageView={() => setModalView(CurrencyModalView.manage)}
           showCommonBases={showCommonBases}
         />
       ) : modalView === CurrencyModalView.importToken && importToken ? (
