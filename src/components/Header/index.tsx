@@ -240,8 +240,7 @@ export default function Header() {
   const { account, chainId } = useActiveWeb3React()
   const { account: web3Account } = useWeb3React()
   const userEthBalance = useETHBalances(account ? [account] : [])?.[account ?? '']
-  // const [isDark] = useDarkModeManager()
-  const [darkMode, toggleDarkMode] = useDarkModeManager()
+  const [modeIsDark, toggleDarkMode] = useDarkModeManager()
   const scrollY = useScrollPosition()
 
   return (
@@ -249,7 +248,7 @@ export default function Header() {
       <HeaderRow>
         <Title href=".">
           <Icon>
-            <img width={'32px'} src={`${process.env.PUBLIC_URL}/${darkMode ? 'icon.svg' : 'icon.svg'}`} alt="icon" />
+            <img width={32} src={`${process.env.PUBLIC_URL}/icon-${modeIsDark ? 'dark' : 'light'}.svg`} alt="icon" />
           </Icon>
         </Title>
       </HeaderRow>
@@ -258,7 +257,7 @@ export default function Header() {
           Swap
         </StyledNavLink>
         <StyledNavLink
-          id={`pool-nav-link`}
+          id="pool-nav-link"
           to={'/pool'}
           isActive={(match, { pathname }) =>
             Boolean(match) ||
@@ -281,7 +280,7 @@ export default function Header() {
           <AccountElement active={!!account} style={{ pointerEvents: 'auto' }}>
             {account && userEthBalance ? (
               <BalanceText style={{ flexShrink: 0 }} pl="0.75rem" pr="0.5rem" fontWeight={500}>
-                {userEthBalance?.toSignificant(4)} {chainId === ChainId.POLYGON_AMOY ? 'POL' : 'ETH'}
+                {userEthBalance?.toSignificant(4)} POL
               </BalanceText>
             ) : null}
             <Web3Status />
@@ -289,7 +288,7 @@ export default function Header() {
         </HeaderElement>
         <HeaderElementWrap>
           <StyledMenuButton onClick={() => toggleDarkMode()}>
-            {darkMode ? <Moon size={20} /> : <Sun size={20} />}
+            {modeIsDark ? <Moon size={20} /> : <Sun size={20} />}
           </StyledMenuButton>
           <Menu />
         </HeaderElementWrap>
