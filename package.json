@@ -1,5 +1,8 @@
 {
   "private": true,
+  "name": "metaswap-v3",
+  "description": "Metaswap interface",
+  "homepage": "https://fullstack-development.github.io/uniswap-v3-interface",
   "scripts": {
     "compile-contract-types": "yarn compile-external-abi-types && yarn compile-v3-contract-types",
     "compile-external-abi-types": "typechain --target ethers-v5 --out-dir src/abis/types \"./src/abis/**/*.json\"",
