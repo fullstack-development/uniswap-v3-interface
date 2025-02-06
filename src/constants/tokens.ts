@@ -45,7 +45,6 @@ export const WBTC = {
     'Wrapped Bitcoin'
   ),
 }
-
 export const SHIB = {
   [ChainId.POLYGON_AMOY]: new Token(
     ChainId.POLYGON_AMOY,
