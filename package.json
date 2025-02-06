@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@metalamp/metaswap",
-  "description": "Metaswap interface",
+  "description": "Change one token for another. Easy and fast.",
   "version": "3.0.0",
   "homepage": "https://fullstack-development.github.io/uniswap-v3-interface",
   "scripts": {
