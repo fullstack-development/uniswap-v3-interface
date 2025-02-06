@@ -5,7 +5,6 @@ import { abi as IUniswapV2PairABI } from '@uniswap/v2-core/build/IUniswapV2Pair.
 import { abi as V3FactoryABI } from '@uniswap/v3-core/artifacts/contracts/UniswapV3Factory.sol/UniswapV3Factory.json'
 import { abi as V3PoolABI } from '@uniswap/v3-core/artifacts/contracts/UniswapV3Pool.sol/UniswapV3Pool.json'
 import { abi as QuoterABI } from '@uniswap/v3-periphery/artifacts/contracts/lens/Quoter.sol/Quoter.json'
-import { abi as V2MigratorABI } from '@uniswap/v3-periphery/artifacts/contracts/V3Migrator.sol/V3Migrator.json'
 import { abi as IUniswapV2Router02ABI } from '@uniswap/v2-periphery/build/IUniswapV2Router02.json'
 import ENS_PUBLIC_RESOLVER_ABI from 'abis/ens-public-resolver.json'
 import ENS_ABI from 'abis/ens-registrar.json'
@@ -18,7 +17,6 @@ import {
   NONFUNGIBLE_POSITION_MANAGER_ADDRESSES,
   QUOTER_ADDRESSES,
   V3_CORE_FACTORY_ADDRESSES,
-  V3_MIGRATOR_ADDRESSES,
   MULTICALL2_ADDRESSES,
   V2_ROUTER_ADDRESS,
   ENS_REGISTRAR_ADDRESSES,
@@ -27,7 +25,6 @@ import { abi as NFTPositionManagerABI } from '@uniswap/v3-periphery/artifacts/co
 import { useMemo } from 'react'
 import { Quoter, UniswapV3Factory, UniswapV3Pool } from 'types/v3'
 import { NonfungiblePositionManager } from 'types/v3/NonfungiblePositionManager'
-import { V3Migrator } from 'types/v3/V3Migrator'
 import { getContract } from 'utils'
 import { EnsPublicResolver, EnsRegistrar, Erc20, Multicall2, Weth } from '../abis/types'
 import { useActiveWeb3React } from './web3'
@@ -53,10 +50,6 @@ export function useContract<T extends Contract = Contract>(
       return null
     }
   }, [addressOrAddressMap, ABI, library, chainId, withSignerIfPossible, account]) as T
-}
-
-export function useV2MigratorContract() {
-  return useContract<V3Migrator>(V3_MIGRATOR_ADDRESSES, V2MigratorABI, true)
 }
 
 export function useTokenContract(tokenAddress?: string, withSignerIfPossible?: boolean) {
