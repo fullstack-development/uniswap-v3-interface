@@ -1,4 +1,4 @@
-import React, { ErrorInfo } from 'react'
+import React from 'react'
 import store, { AppState } from '../../state'
 import { ExternalLink, ThemedBackground, TYPE } from '../../theme'
 import { AutoColumn } from '../Column'
