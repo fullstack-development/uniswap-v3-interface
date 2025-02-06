@@ -1,7 +1,8 @@
 {
   "private": true,
-  "name": "metaswap-v3",
+  "name": "@metalamp/metaswap",
   "description": "Metaswap interface",
+  "version": "3.0.0",
   "homepage": "https://fullstack-development.github.io/uniswap-v3-interface",
   "scripts": {
     "compile-contract-types": "yarn compile-external-abi-types && yarn compile-v3-contract-types",
