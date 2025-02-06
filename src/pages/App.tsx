@@ -9,8 +9,7 @@ import ErrorBoundary from '../components/ErrorBoundary'
 import DarkModeQueryParamReader from '../theme/DarkModeQueryParamReader'
 import { RedirectDuplicateTokenIds } from './AddLiquidity/redirects'
 import Pool from './Pool'
-import PoolFinder from './PoolFinder'
-import RemoveLiquidityV3 from './RemoveLiquidity'
+import RemoveLiquidity from './RemoveLiquidity'
 import Swap from './Swap'
 import { RedirectPathToSwapOnly, RedirectToSwap } from './Swap/redirects'
 import { PositionPage } from './Pool/PositionPage'
@@ -71,7 +70,6 @@ export default function App() {
                 <Route exact strict path="/send" component={RedirectPathToSwapOnly} />
                 <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap} />
                 <Route exact strict path="/swap" component={Swap} />
-                <Route exact strict path="/find" component={PoolFinder} />
                 <Route exact strict path="/pool" component={Pool} />
                 <Route exact strict path="/pool/:tokenId" component={PositionPage} />
                 <Route
@@ -86,7 +84,7 @@ export default function App() {
                   path="/increase/:currencyIdA?/:currencyIdB?/:feeAmount?/:tokenId?"
                   component={AddLiquidity}
                 />
-                <Route exact strict path="/remove/:tokenId" component={RemoveLiquidityV3} />
+                <Route exact strict path="/remove/:tokenId" component={RemoveLiquidity} />
                 <Route component={RedirectPathToSwapOnly} />
               </Switch>
             </Web3ReactManager>

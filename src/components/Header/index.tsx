@@ -267,8 +267,7 @@ export default function Header() {
             Boolean(match) ||
             pathname.startsWith('/add') ||
             pathname.startsWith('/remove') ||
-            pathname.startsWith('/increase') ||
-            pathname.startsWith('/find')
+            pathname.startsWith('/increase')
           }
         >
           Pool
