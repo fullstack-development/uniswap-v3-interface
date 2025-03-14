@@ -3,7 +3,7 @@
   "name": "@metalamp/metaswap",
   "description": "Change one token for another. Easy and fast.",
   "version": "3.0.0",
-  "homepage": "https://uni.metalamp.io",
+  "homepage": "https://uni3.metalamp.io",
   "scripts": {
     "compile-contract-types": "yarn compile-external-abi-types && yarn compile-v3-contract-types",
     "compile-external-abi-types": "typechain --target ethers-v5 --out-dir src/abis/types \"./src/abis/**/*.json\"",
